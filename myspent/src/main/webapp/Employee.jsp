@@ -38,10 +38,16 @@
 				<tr>
 					<td></td>
 					<td><input type="submit"/></td>
+					<td><button onclick="test()">Hai</button></td>
 				</tr>
 
 			</table>
 	</center>
 	</form>
+<script>
+    function test(){
+        alert("Hello"); // added sample text
+    }
+ </script>
 </body>
 </html>
