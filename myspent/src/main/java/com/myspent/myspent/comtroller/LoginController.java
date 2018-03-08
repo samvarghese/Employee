@@ -28,7 +28,8 @@ public class LoginController {
 	
 	@Autowired
 	private EmployeeDao empDao;
-
+	
+	
 	@RequestMapping("/")
 	public String loginCheck() {
 		System.out.println("hai");
@@ -51,9 +52,9 @@ public class LoginController {
 		}
 		
 		 List<Employee> empList=empDao.findAll();
-		 empList.forEach(x->{
-			 System.out.println("Employee_name "+x.getUsername()+"Email_"+x.getEmail()+""+"User_Name "+x.getUser().getUserName());
-		 });
+//		 empList.forEach(x->{
+//					 System.out.println("Employee_name "+x.getUsername()+"Email_"+x.getEmail()+""+"User_Name "+x.getUser().getUserName());
+//		 });
 		md.addObject("emp", empList);
 		md.setViewName("EmpList");
 		return md;
@@ -76,7 +77,22 @@ public class LoginController {
 		emp.setUser(user);
 		empDao.save(emp);
 		
-		System.out.println("ddd"+register.getEmail());
+		//System.out.println("ddd"+register.getEmail());
+		return "";
+	}
+	
+	@PostMapping("/setRole")
+	public String setRole(@RequestParam("name") String name,
+			@RequestParam("userId") int userId,
+			@RequestParam("userRole") int userRole
+			){
+		System.out.println("inside name");
+		System.out.println("name"+name+"userId"+userId+"userRole"+userRole);
+		User user=new User();
+		user.setUser_id(userId);
+		//user.setRoles(roles);
+		//dao.save(arg0)
+		
 		return "";
 	}
 

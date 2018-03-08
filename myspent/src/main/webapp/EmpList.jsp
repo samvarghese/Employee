@@ -23,17 +23,19 @@
 					<td>${i.getUsername()}</td>
 					<td>${i.getEmail()}</td>
 					<td>${i.getUsername()}</td>
-
+                    <td><input type="button" onclick="test('${i.getUsername()}','${i.getUser().getUser_id()}' )">Role</input></td>
 				</tr>
 			</c:forEach>
 
 		</table>
-		<form action="">
+		<form action="/setRole" method="post">
 			<table>
 				<tr>
 					<td>Employee Name:</td>
+					<td><input type="text" name="name" id="name"></td>
+					<td><input type="hidden" name="userId" id="userId"></td>
 
-					<td><select>
+					<td><select name="userRole">
 							<option value="1">Admin</option>
 							<option value="2">Developer</option>
 					</select></td>
@@ -45,6 +47,14 @@
 		</form>
 
 	</center>
+	<script>
+    function test(i,id){
+    	console.log(i+" "+id);
+    	document.getElementById('name').value=i
+    	document.getElementById('userId').value=id
+        //alert("Hello"+i); // added sample text
+    }
+ </script>
 
 </body>
 </html>
