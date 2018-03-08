@@ -1,5 +1,6 @@
 package com.myspent.myspent.comtroller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -90,8 +91,9 @@ public class LoginController {
 		System.out.println("name"+name+"userId"+userId+"userRole"+userRole);
 		User user=new User();
 		user.setUser_id(userId);
-		//user.setRoles(roles);
-		//dao.save(arg0)
+		List<Roles> role=new ArrayList<Roles>();
+		user.setRoles(role);
+		dao.save(user);
 		
 		return "";
 	}
