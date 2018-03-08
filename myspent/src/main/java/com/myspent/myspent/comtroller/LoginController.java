@@ -1,5 +1,7 @@
 package com.myspent.myspent.comtroller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -47,7 +49,13 @@ public class LoginController {
 		} else {
 			md.addObject("mssg", "Invalid Creditial");
 		}
-		md.setViewName("index");
+		
+		 List<Employee> empList=empDao.findAll();
+		 empList.forEach(x->{
+			 System.out.println("Employee_name "+x.getUsername()+"Email_"+x.getEmail()+""+"User_Name "+x.getUser().getUserName());
+		 });
+		md.addObject("emp", empList);
+		md.setViewName("EmpList");
 		return md;
 	}
 	
@@ -56,9 +64,16 @@ public class LoginController {
 	public String Register(@ModelAttribute("Register") Register register) {
 		System.out.println(register.getEmail());
 		Employee emp=new Employee();
-		emp.setUsername(register.getUserName());
+		emp.setUsername(register.getEmpName());
 		emp.setDept(new Departement(register.getDeptId()));
 		emp.setEmail(register.getEmail());
+		
+		User user=new User();
+		user.setUserName(register.getUserName());
+		user.setPassword(register.getPassword());
+		user.setEmp(emp);
+		
+		emp.setUser(user);
 		empDao.save(emp);
 		
 		System.out.println("ddd"+register.getEmail());

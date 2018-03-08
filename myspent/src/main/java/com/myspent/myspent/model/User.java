@@ -31,6 +31,12 @@ public class User {
 	private Employee emp;
 	
 	
+//	public User(String userName2, String password2, int i) {
+//		// TODO Auto-generated constructor stub
+//		this.userName=userName2;
+//		this.password=password2;
+//		
+//	}
 	public Employee getEmp() {
 		return emp;
 	}

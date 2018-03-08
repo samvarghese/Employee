@@ -25,8 +25,13 @@ public class Departement {
     private List<Employee> emp;
     
 	
+	public Departement() {
+		super();
+	}
+
 	public Departement(int deptId2) {
 		// TODO Auto-generated constructor stub
+		
 		this.deptId=deptId2;
 	}
 

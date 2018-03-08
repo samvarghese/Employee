@@ -3,6 +3,7 @@ package com.myspent.myspent.model;
 import java.util.List;
 
 import javax.annotation.Generated;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -30,8 +31,8 @@ public class Employee {
 	@ManyToOne
 	private Departement dept;
 	
-//	@OneToOne(mappedBy="emp")
-//	private User user;
+	@OneToOne(mappedBy="emp",cascade = CascadeType.ALL)
+	private User user;
 	
 	
 	public int getEmp_id() {
@@ -58,12 +59,12 @@ public class Employee {
 	public void setDept(Departement dept) {
 		this.dept = dept;
 	}
-//	public User getUser() {
-//		return user;
-//	}
-//	public void setUser(User user) {
-//		this.user = user;
-//	}
+	public User getUser() {
+		return user;
+	}
+	public void setUser(User user) {
+		this.user = user;
+	}
 	
 	
 	
