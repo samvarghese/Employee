@@ -22,6 +22,9 @@ public class Roles {
 	@ManyToMany(mappedBy="roles")
 	private List<User> user;
 	
+	public Roles() {
+		super();
+	}
 	public Roles(int userRole) {
 		this.role_id=userRole;
 		// TODO Auto-generated constructor stub

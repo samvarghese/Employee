@@ -2,6 +2,7 @@ package com.myspent.myspent.comtroller;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -20,12 +21,15 @@ import com.myspent.myspent.model.Departement;
 import com.myspent.myspent.model.Employee;
 import com.myspent.myspent.model.Roles;
 import com.myspent.myspent.model.User;
+import com.myspent.myspent.utility.MailServices;
 
 @Controller
 public class LoginController {
 
 	@Autowired
 	private UserDao dao;
+	@Autowired
+	private MailServices ms;
 	
 	@Autowired
 	private EmployeeDao empDao;
@@ -78,6 +82,8 @@ public class LoginController {
 		emp.setUser(user);
 		empDao.save(emp);
 		
+		ms.sendSimpleMessage("", "", "");
+		
 		//System.out.println("ddd"+register.getEmail());
 		return "";
 	}
@@ -87,13 +93,28 @@ public class LoginController {
 			@RequestParam("userId") int userId,
 			@RequestParam("userRole") int userRole
 			){
+		int flag=0;
 		System.out.println("inside name");
 		System.out.println("name"+name+"userId"+userId+"userRole"+userRole);
-		User user=new User();
-		user.setUser_id(userId);
+		User user=(User)dao.findByUserId(userId);
+	
 		List<Roles> role=new ArrayList<Roles>();
-		user.setRoles(role);
-		dao.save(user);
+		role.addAll(user.getRoles());
+		for(Roles x:user.getRoles()){
+			if(x.getRole_id()==userId){
+				 flag=1;
+				
+			}
+		}
+		
+		if(flag==0){
+			role.add(new Roles(userRole));
+			user.setRoles(role);
+			dao.save(user);
+		}
+		
+	
+		
 		
 		return "";
 	}

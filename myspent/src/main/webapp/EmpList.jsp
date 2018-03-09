@@ -23,7 +23,7 @@
 					<td>${i.getUsername()}</td>
 					<td>${i.getEmail()}</td>
 					<td>${i.getUsername()}</td>
-                    <td><input type="button" onclick="test('${i.getUsername()}','${i.getUser().getUser_id()}' )">Role</input></td>
+                    <td><button  onclick="test('${i.getUsername()}','${i.getUser().getUserId()}' )">Role</button></td>
 				</tr>
 			</c:forEach>
 

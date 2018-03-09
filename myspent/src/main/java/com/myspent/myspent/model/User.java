@@ -2,6 +2,7 @@ package com.myspent.myspent.model;
 
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -17,13 +18,13 @@ import javax.persistence.Table;
 public class User {
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
-	private int user_id;
+	private int userId;
 	@Column(name="user_name")
 	private String userName;
 	@Column(name="password")
 	private String password;
-	@ManyToMany
-	@JoinTable(name = "user_role", joinColumns =@JoinColumn(name = "user_id", referencedColumnName = "user_id"),
+	@ManyToMany(cascade = CascadeType.ALL)
+	@JoinTable(name = "user_role", joinColumns =@JoinColumn(name = "userId", referencedColumnName = "userId"),
 	inverseJoinColumns = @JoinColumn(name = "role_id", referencedColumnName = "role_id"))
 	private List<Roles> roles;
 	
@@ -49,11 +50,11 @@ public class User {
 	public void setRoles(List<Roles> roles) {
 		this.roles = roles;
 	}
-	public int getUser_id() {
-		return user_id;
+	public int getUserId() {
+		return userId;
 	}
-	public void setUser_id(int user_id) {
-		this.user_id = user_id;
+	public void setUserId(int userId) {
+		this.userId = userId;
 	}
 	public String getUserName() {
 		return userName;

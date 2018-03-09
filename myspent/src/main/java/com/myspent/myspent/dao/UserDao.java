@@ -6,4 +6,6 @@ import com.myspent.myspent.model.User;
 
 public interface UserDao extends JpaRepository<User, Integer> {
   User findByUserNameAndPassword(String name,String password);
+
+User findByUserId(int userId);
 }
