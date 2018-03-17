@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+import javax.mail.MessagingException;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -67,7 +69,7 @@ public class LoginController {
 	
 	
 	@PostMapping("/Register")
-	public String Register(@ModelAttribute("Register") Register register) {
+	public String Register(@ModelAttribute("Register") Register register) throws MessagingException {
 		System.out.println(register.getEmail());
 		Employee emp=new Employee();
 		emp.setUsername(register.getEmpName());
